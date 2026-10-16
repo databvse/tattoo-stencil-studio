@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111111">
+  <title>Stencil Lab | Tattoo Studio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark">S</div>
+    <div>
+      <h1>STENCIL LAB</h1>
+      <p>PERSONAL TATTOO STUDIO</p>
+    </div>
+    <span class="local-tag">LOCAL</span>
+  </header>
+
+  <main>
+    <section class="intro">
+      <p class="eyebrow">BLACK & GREY WORKFLOW</p>
+      <h2>Tu próximo stencil<br>empieza aquí.</h2>
+      <p class="muted">Prepara referencias y plantillas para tatuajes realistas.</p>
+    </section>
+
+    <section class="panel">
+      <label class="upload-area" for="imageInput">
+        <span class="upload-icon">＋</span>
+        <strong>Seleccionar imagen</strong>
+        <span>Fotografía o dibujo · JPG, PNG, WEBP</span>
+        <input id="imageInput" type="file" accept="image/*">
+      </label>
+
+      <p id="status" class="status" aria-live="polite">
+        Selecciona una imagen para comenzar.
+      </p>
+
+      <div class="preview-grid">
+        <div>
+          <div class="preview-heading">ORIGINAL</div>
+          <div class="preview">
+            <img id="original" alt="Imagen original" hidden>
+            <span id="originalEmpty">Tu referencia</span>
+          </div>
+        </div>
+        <div>
+          <div class="preview-heading">RESULTADO</div>
+          <div class="preview">
+            <canvas id="output" hidden></canvas>
+            <span id="outputEmpty">Tu stencil</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <p class="section-label">01 / ESTILO DE PLANTILLA</p>
+      <div class="mode-grid">
+        <button class="mode active" data-mode="gray">
+          <span>◐</span>Grises
+        </button>
+        <button class="mode" data-mode="edges">
+          <span>⌁</span>Contornos
+        </button>
+        <button class="mode" data-mode="threshold">
+          <span>◩</span>Alto contraste
+        </button>
+        <button class="mode" data-mode="dots">
+          <span>⠿</span>Mapa tonal
+        </button>
+      </div>
+      <p class="hint">
+        Estos estilos son filtros de imagen, no una interpretación
+        artística automática mediante IA.
+      </p>
+    </section>
+
+    <section class="panel">
+      <p class="section-label">02 / AJUSTES</p>
+
+      <div class="control">
+        <div class="control-heading">
+          <label for="contrast">Contraste</label>
+          <output id="contrastValue">25</output>
+        </div>
+        <input id="contrast" type="range" min="-50" max="100" value="25">
+      </div>
+
+      <div class="control">
+        <div class="control-heading">
+          <label for="brightness">Brillo</label>
+          <output id="brightnessValue">0</output>
+        </div>
+        <input id="brightness" type="range" min="-80" max="80" value="0">
+      </div>
+
+      <div class="control">
+        <div class="control-heading">
+          <label for="threshold">Umbral de negro</label>
+          <output id="thresholdValue">120</output>
+        </div>
+        <input id="threshold" type="range" min="30" max="220" value="120">
+      </div>
+
+      <div class="control">
+        <div class="control-heading">
+          <label for="detail">Sensibilidad de contorno</label>
+          <output id="detailValue">45</output>
+        </div>
+        <input id="detail" type="range" min="10" max="100" value="45">
+      </div>
+
+      <label class="toggle-row">
+        <span>
+          <strong>Invertir blanco y negro</strong>
+          <small>Invierte los valores del resultado.</small>
+        </span>
+        <input id="invert" type="checkbox">
+      </label>
+
+      <button id="reset" class="secondary-btn">Restablecer ajustes</button>
+    </section>
+
+    <section class="panel">
+      <p class="section-label">03 / EXPORTAR</p>
+      <p class="muted small">
+        Descarga el resultado como PNG. El tamaño de impresión
+        dependerá de la resolución de la imagen original.
+      </p>
+      <button id="download" class="primary-btn" disabled>
+        Descargar stencil PNG
+      </button>
+    </section>
+
+    <footer>
+      <p>STENCIL LAB · VERSIÓN 0.1</p>
+      <p>Procesamiento local en tu navegador.</p>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
